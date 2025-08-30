@@ -1,40 +1,37 @@
-# COL331 -- Operating-Systems -- Course Assignments
-This repository contains the completed assignments for the Operating Systems course. 
-The primary focus of these assignments is to add and modify functionalities within the xv6 teaching operating system.
+# COL331 – Operating Systems  
+**Assignments from the Operating Systems course (COL331) at IIT Delhi, taught by Prof. S.R. Sarangi**
 
-## Repository Structure & File Descriptions
-Inside each assignment folder, you will find the following files:
-- The original assignment problem statement, detailing the requirements and tasks.
-- This is the compressed tarball containing the complete source code for the xv6 project after implementing the required features.
-- changes.patch: A patch file that contains all the modifications made to the original xv6 source code. This file makes it easy to see the exact changes implemented for the assignment.
+This repository contains implementations of various operating system concepts using the [xv6](https://github.com/mit-pdos/xv6-public) teaching OS, as part of the coursework for COL331.
 
+---
 
-## Assignments Overview
+## 📁 Assignments
 
-### Assignment 1: Shell Enhancements and System Calls
-Enhanced Shell: Implemented a username-password based login system to protect the xv6 shell.
-history Command: Added a new shell command and a corresponding sys_gethistory system call to display a history of executed processes with their PID, name, and memory usage.
-block/unblock Commands: Introduced sys_block and sys_unblock system calls to block and unblock other system calls for processes spawned by the current shell.
+### [Assignment 1: Shell Commands in xv6](./Assignment_1_Shell_Commands)
+- Implemented custom shell commands and associated system calls in xv6.
+- Features:
+  - `history` system call to display command history.
+  - `block` and `unblock` system calls to control permissions for other system calls.
+  - `chmod` system call to modify file permissions.
 
-### Assignment 2: Signals and Scheduling
-Signal Handling: Added support for handling keyboard interrupts in xv6:
-Ctrl+C (SIGINT): Terminates processes.
-Ctrl+B (SIGBG): Suspends processes and sends them to the background.
-Ctrl+F (SIGFG): Resumes suspended background processes.
-Ctrl+G (SIGCUSTOM): Invokes a user-registered custom signal handler.
-Priority Boosting Scheduler: Replaced the default round-robin scheduler with a priority-based scheduler. The priority of a process is dynamically adjusted based on its CPU consumption and wait time to prevent starvation.
+---
 
-### Assignment 3: Memory Management
-Memory Printer: Created a handler invoked by Ctrl+I that prints the number of memory pages allocated to each running, sleeping, and runnable user process.
-Page Swapping: Implemented a page swapping mechanism to move memory pages to a reserved swap space on the disk when physical memory is low.
-Adaptive Page Replacement: Developed an adaptive page replacement strategy that dynamically adjusts the threshold for swapping and the number of pages to be swapped out based on system load.
+### [Assignment 2: Signal Handling and Scheduling](./Assignment_2_Signals_and_Scheduling)
+- Enhanced xv6 with signal handling and a modified scheduler.
+- Features:
+  - Signal delivery and handling, including interrupt, background, and foreground signals.
+  - Custom signal handler registration.
+  - Priority boosting added to the scheduler for fairer CPU allocation.
 
-## How to Use the Patch Files
-The changes.patch file in each assignment directory allows you to apply the modifications to a clean xv6 source tree.
-Start with a clean xv6 directory.
-Copy the changes.patch file into the root of the clean xv6 directory.
-Apply the patch using the following command:
-git apply changes.patch
+---
 
+### [Assignment 3: Swap Memory Implementation in xv6](./Assignment_3_Swap_Memory)
+- Added swap memory support to xv6 for better memory management.
+- Features:
+  - Modified disk structure to accommodate swap space.
+  - Implemented page swapping (in and out) between RAM and disk.
+  - Adaptive page replacement policy for efficient memory usage.
 
-Your xv6 source code is now updated with the solution for that assignment. You can compile and run it using make qemu.
+---
+
+Each assignment progressively extends the functionality of the xv6 kernel, exploring real-world OS concepts such as process control, memory management, and CPU scheduling.
